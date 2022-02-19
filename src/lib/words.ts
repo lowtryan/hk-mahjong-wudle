@@ -105,10 +105,10 @@ export const convertHandToUnicode = (hand: string) => {
 
 export const isInvalidHand = (word: string) => {
   const tiles = graphemeSplitter.splitGraphemes(word)
-  const counts: { [id: string]: number } = {};
+  const counts: { [id: string]: number } = {}
 
   for (const tile of tiles) {
-    counts[tile] = counts[tile] ? counts[tile] + 1 : 1;
+    counts[tile] = counts[tile] ? counts[tile] + 1 : 1
   }
 
   for (const tile in counts) {

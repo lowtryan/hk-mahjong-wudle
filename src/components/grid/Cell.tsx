@@ -21,5 +21,9 @@ export const Cell = ({ value, status }: Props) => {
     }
   )
 
-  return <div className={classes}><RenderTile tile={value} /></div>
+  return (
+    <div className={classes}>
+      <RenderTile tile={value} />
+    </div>
+  )
 }

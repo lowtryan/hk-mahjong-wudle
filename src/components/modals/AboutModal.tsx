@@ -23,8 +23,7 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         >
           Mahjong Handle
         </a>{' '}
-        衍生出嚟，估香港麻雀糊牌嘅遊戲
-        -{' '}
+        衍生出嚟，估香港麻雀糊牌嘅遊戲 -{' '}
         <a
           href="https://github.com/lowtryan/hk-mahjong-wudle"
           className="underline font-bold"
