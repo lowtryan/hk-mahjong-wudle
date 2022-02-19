@@ -203,8 +203,8 @@ function App() {
       </div>
       <div className="flex w-full mx-auto items-center mb-8 mt-12">
         <h2 className="text-lg w-full text-center font-bold dark:text-white">
-          Round wind: {windMap[Math.floor(wind / 10)]} / Seat wind:{' '}
-          {windMap[wind % 10]} / {isTsumo ? 'Tsumo' : 'Ron'}
+          {windMap[Math.floor(wind / 10)]}圈 {windMap[wind % 10]}位 /{' '}
+          {isTsumo ? '自摸' : '出銃'} / 三番起糊
         </h2>
       </div>
       <Grid guesses={guesses} currentGuess={currentGuess} />
@@ -248,10 +248,7 @@ function App() {
         message={WORD_NOT_FOUND_MESSAGE}
         isOpen={isWordNotFoundAlertOpen}
       />
-      <Alert
-        message={INVALID_HAND_MESSAGE}
-        isOpen={isInvalidHandAlertOpen}
-      />
+      <Alert message={INVALID_HAND_MESSAGE} isOpen={isInvalidHandAlertOpen} />
       <Alert message={CORRECT_WORD_MESSAGE(solution)} isOpen={isGameLost} />
       <Alert
         message={successAlert}

@@ -41,17 +41,6 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
   return (
     <div>
       <div className="flex justify-center mb-1 sm:text-3xl text-2xl">
-        <Key value="🀇" onClick={onClick} status={charStatuses['🀇']} />
-        <Key value="🀈" onClick={onClick} status={charStatuses['🀈']} />
-        <Key value="🀉" onClick={onClick} status={charStatuses['🀉']} />
-        <Key value="🀊" onClick={onClick} status={charStatuses['🀊']} />
-        <Key value="🀋" onClick={onClick} status={charStatuses['🀋']} />
-        <Key value="🀌" onClick={onClick} status={charStatuses['🀌']} />
-        <Key value="🀍" onClick={onClick} status={charStatuses['🀍']} />
-        <Key value="🀎" onClick={onClick} status={charStatuses['🀎']} />
-        <Key value="🀏" onClick={onClick} status={charStatuses['🀏']} />
-      </div>
-      <div className="flex justify-center mb-1 sm:text-3xl text-2xl">
         <Key value="🀙" onClick={onClick} status={charStatuses['🀙']} />
         <Key value="🀚" onClick={onClick} status={charStatuses['🀚']} />
         <Key value="🀛" onClick={onClick} status={charStatuses['🀛']} />
@@ -73,6 +62,17 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
         <Key value="🀗" onClick={onClick} status={charStatuses['🀗']} />
         <Key value="🀘" onClick={onClick} status={charStatuses['🀘']} />
       </div>
+      <div className="flex justify-center mb-1 sm:text-3xl text-2xl">
+        <Key value="🀇" onClick={onClick} status={charStatuses['🀇']} />
+        <Key value="🀈" onClick={onClick} status={charStatuses['🀈']} />
+        <Key value="🀉" onClick={onClick} status={charStatuses['🀉']} />
+        <Key value="🀊" onClick={onClick} status={charStatuses['🀊']} />
+        <Key value="🀋" onClick={onClick} status={charStatuses['🀋']} />
+        <Key value="🀌" onClick={onClick} status={charStatuses['🀌']} />
+        <Key value="🀍" onClick={onClick} status={charStatuses['🀍']} />
+        <Key value="🀎" onClick={onClick} status={charStatuses['🀎']} />
+        <Key value="🀏" onClick={onClick} status={charStatuses['🀏']} />
+      </div>
       <div className="flex justify-center sm:text-3xl text-2xl">
         <div className="text-xs">
           <Key width={50} value="ENTER" onClick={onClick}>
@@ -83,9 +83,9 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
         <Key value="🀁" onClick={onClick} status={charStatuses['🀁']} />
         <Key value="🀂" onClick={onClick} status={charStatuses['🀂']} />
         <Key value="🀃" onClick={onClick} status={charStatuses['🀃']} />
-        <Key value="🀆" onClick={onClick} status={charStatuses['🀆']} />
-        <Key value="🀅" onClick={onClick} status={charStatuses['🀅']} />
         <Key value="🀄" onClick={onClick} status={charStatuses['🀄']} />
+        <Key value="🀅" onClick={onClick} status={charStatuses['🀅']} />
+        <Key value="🀆" onClick={onClick} status={charStatuses['🀆']} />
         <div className="text-xs">
           <Key width={50} value="DELETE" onClick={onClick}>
             {DELETE_TEXT}

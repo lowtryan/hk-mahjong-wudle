@@ -37,9 +37,9 @@ export type CharValue =
   | '🀁'
   | '🀂'
   | '🀃'
-  | '🀆'
-  | '🀅'
   | '🀄'
+  | '🀅'
+  | '🀆'
 
 export const getStatuses = (
   guesses: string[]

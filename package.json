@@ -1,5 +1,5 @@
 {
-  "name": "mahjong-handle",
+  "name": "hk-mahjong-wudle",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,6 +15,7 @@
     "assert": "^2.0.0",
     "classnames": "^2.3.1",
     "grapheme-splitter": "^1.0.4",
+    "hk-mahjong": "^2.0.2",
     "react": "^17.0.2",
     "react-countdown": "^2.3.2",
     "react-dom": "^17.0.2",
@@ -62,5 +63,8 @@
   },
   "lint-staged": {
     "src/*.{ts,tsx,js,jsx,css,md}": "prettier --write"
-  }
+  },
+  "browser":{
+    "child_process": false
+  }  
 }

@@ -36,9 +36,9 @@ const tileToAsciiMap: { [id: string]: string } = {
   '🀁': '2z',
   '🀂': '3z',
   '🀃': '4z',
-  '🀆': '5z',
+  '🀄': '5z',
   '🀅': '6z',
-  '🀄': '7z',
+  '🀆': '7z',
 }
 
 const tileToUnicodeMap: { [id: string]: string } = {
@@ -73,9 +73,9 @@ const tileToUnicodeMap: { [id: string]: string } = {
   '2z': '🀁',
   '3z': '🀂',
   '4z': '🀃',
-  '5z': '🀆',
+  '5z': '🀄',
   '6z': '🀅',
-  '7z': '🀄',
+  '7z': '🀆',
 }
 
 export const convertHandToAscii = (hand: string) => {
@@ -123,7 +123,7 @@ export const isInvalidHand = (word: string) => {
 
 export const isWordInWordList = (word: string) => {
   const riichiCalc = new Riichi(convertHandToAscii(word)).calc()
-  return riichiCalc.isAgari && Object.keys(riichiCalc.yaku).length > 0
+  return riichiCalc.isAgari
 }
 
 export const isWinningWord = (word: string) => {
@@ -131,8 +131,8 @@ export const isWinningWord = (word: string) => {
 }
 
 export const getWordOfDay = () => {
-  // February 2, 2022 Game Epoch
-  const epochMs = new Date('February 2, 2022 00:00:00').valueOf()
+  // February 17, 2022 Game Epoch
+  const epochMs = new Date('February 17, 2022 00:00:00').valueOf()
   const now = Date.now()
   const msInDay = 86400000
   const index = Math.floor((now - epochMs) / msInDay)

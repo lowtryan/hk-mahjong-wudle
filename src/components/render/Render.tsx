@@ -46,9 +46,9 @@ const tileToSVGMap: { [id: string]: string } = {
   '🀁': 'Nan.svg',
   '🀂': 'Shaa.svg',
   '🀃': 'Pei.svg',
-  '🀆': 'Haku.svg',
-  '🀅': 'Hatsu.svg',
   '🀄': 'Chun.svg',
+  '🀅': 'Hatsu.svg',
+  '🀆': 'Haku.svg',
 }
 
 const tileToNameMap: { [id: string]: string } = {
@@ -83,7 +83,7 @@ const tileToNameMap: { [id: string]: string } = {
   '🀁': 'Nan (South)',
   '🀂': 'Shaa (West)',
   '🀃': 'Pei (North)',
-  '🀆': 'Haku (White)',
-  '🀅': 'Hatsu (Green)',
   '🀄': 'Chun (Red)',
+  '🀅': 'Hatsu (Green)',
+  '🀆': 'Haku (White)',
 }
