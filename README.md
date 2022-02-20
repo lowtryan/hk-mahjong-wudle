@@ -1,4 +1,4 @@
-# Hong Kong Mahjong Wudle | 香港麻雀 Wu(糊)dle
+# Hong Kong Mahjong Wudle | 香港麻雀 糊dle
 
 This is a clone project of a popular word guessing game made using React, Typescript, and Tailwind.
 
