@@ -16,6 +16,13 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         >
           Wordle
         </a>{' '}
+        ，{' '}
+        <a
+          href="https://github.com/cwackerfuss/react-wordle"
+          className="underline font-bold"
+        >
+          React Wordle
+        </a>{' '}
         同{' '}
         <a
           href="https://mahjong-handle.update.sh/"
@@ -32,14 +39,37 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         </a>
         <br />
         <br />
-        Favicon by{' '}
+        Uses{' '}
         <a
           href="https://github.com/twitter/twemoji"
           className="underline font-bold"
         >
-          Twemoji
+          twitter/twemoji
         </a>{' '}
-        licensed under the CC-BY 4.0
+        as favicon, licensed under{' '}
+        <a
+          href="https://creativecommons.org/licenses/by/4.0/"
+          className="underline font-bold"
+        >
+          CC-BY 4.0
+        </a>
+        .
+        <br />
+        Uses{' '}
+        <a
+          href="https://github.com/twitter/twemoji"
+          className="underline font-bold"
+        >
+          SyaoranHinata/I.Mahjong
+        </a>{' '}
+        as the tiles, licensed under{' '}
+        <a
+          href="https://mplusfonts.github.io/"
+          className="underline font-bold"
+        >
+          M+ Fonts License
+        </a>
+        .
       </p>
     </BaseModal>
   )

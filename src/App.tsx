@@ -185,9 +185,11 @@ function App() {
   }
 
   return (
-    <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center mb-8 mt-12">
-        <h1 className="text-xl grow font-bold dark:text-white">{GAME_TITLE}</h1>
+    <div className="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="flex w-80 mx-auto items-center mb-5">
+        <h1 className="text-2xl grow font-bold dark:text-white">
+          {GAME_TITLE}
+        </h1>
         <SunIcon
           className="h-6 w-6 cursor-pointer dark:stroke-white"
           onClick={() => handleDarkMode(!isDarkMode)}
@@ -201,7 +203,7 @@ function App() {
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
-      <div className="flex w-full mx-auto items-center mb-8 mt-12">
+      <div className="flex w-full mx-auto items-center mb-3.5">
         <h2 className="text-lg w-full text-center font-bold dark:text-white">
           {windMap[Math.floor(wind / 10)]}圈 {windMap[wind % 10]}位 /{' '}
           {isTsumo ? '自摸' : '出銃'} / 三番起糊

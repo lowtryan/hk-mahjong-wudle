@@ -9,13 +9,13 @@ export const RenderTile = ({ tile }: Props) => {
   return (
     <>
       <img
-        className="p-1 block dark:hidden drop-shadow-tile-light"
-        src={`/tiles/light/${tileToSVGMap[tile]}`}
+        className="p-px block dark:hidden drop-shadow-tile-light"
+        src={`/hk-mahjong-wudle/tiles/light/${tileToSVGMap[tile]}`}
         alt={tileToNameMap[tile]}
       />
       <img
-        className="p-1 hidden dark:!block drop-shadow-tile-dark"
-        src={`/tiles/dark/${tileToSVGMap[tile]}`}
+        className="p-px hidden dark:!block drop-shadow-tile-dark"
+        src={`/hk-mahjong-wudle/tiles/dark/${tileToSVGMap[tile]}`}
         alt={tileToNameMap[tile]}
       />
     </>
