@@ -1,3 +1,4 @@
+import ReactGA from 'react-ga'
 import {
   InformationCircleIcon,
   ChartBarIcon,
@@ -85,6 +86,13 @@ function App() {
   })
 
   const [stats, setStats] = useState(() => loadStats())
+
+  useEffect(() => {
+    ReactGA.initialize('UA-221024530-1', {
+      testMode: process.env.NODE_ENV === 'test',
+    })
+    ReactGA.pageview('/')
+  }, [])
 
   useEffect(() => {
     if (isDarkMode) {
