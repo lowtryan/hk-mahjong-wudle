@@ -63,10 +63,7 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
           SyaoranHinata/I.Mahjong
         </a>{' '}
         as the tiles, licensed under{' '}
-        <a
-          href="https://mplusfonts.github.io/"
-          className="underline font-bold"
-        >
+        <a href="https://mplusfonts.github.io/" className="underline font-bold">
           M+ Fonts License
         </a>
         .
