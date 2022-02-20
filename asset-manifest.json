@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/hk-mahjong-wudle/static/css/main.e7f7e51f.css",
-    "main.js": "/hk-mahjong-wudle/static/js/main.7820b749.js",
+    "main.css": "/hk-mahjong-wudle/static/css/main.4decc4d1.css",
+    "main.js": "/hk-mahjong-wudle/static/js/main.9bc2788b.js",
     "static/js/787.4f249097.chunk.js": "/hk-mahjong-wudle/static/js/787.4f249097.chunk.js",
     "index.html": "/hk-mahjong-wudle/index.html",
-    "main.e7f7e51f.css.map": "/hk-mahjong-wudle/static/css/main.e7f7e51f.css.map",
-    "main.7820b749.js.map": "/hk-mahjong-wudle/static/js/main.7820b749.js.map",
+    "main.4decc4d1.css.map": "/hk-mahjong-wudle/static/css/main.4decc4d1.css.map",
+    "main.9bc2788b.js.map": "/hk-mahjong-wudle/static/js/main.9bc2788b.js.map",
     "787.4f249097.chunk.js.map": "/hk-mahjong-wudle/static/js/787.4f249097.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7f7e51f.css",
-    "static/js/main.7820b749.js"
+    "static/css/main.4decc4d1.css",
+    "static/js/main.9bc2788b.js"
   ]
 }
