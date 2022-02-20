@@ -16,9 +16,11 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
 
       <p className="text-sm text-green-700 dark:text-green-500">
-        你嘅答案一定要係3番或以上，而且要由 筒子 ➔ 索子 ➔ 萬子 ➔ 番子 順序排列
+        你嘅答案一定要用以下順序排列：
         <br />
-        番子嘅排列： 東風 ➔ 南風 ➔ 西風 ➔ 北風 ➔ 紅中 ➔ 發財 ➔ 白板
+        筒子 ➔ 索子 ➔ 萬子
+        <br />
+        東風 ➔ 南風 ➔ 西風 ➔ 北風 ➔ 紅中 ➔ 發財 ➔ 白板
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
