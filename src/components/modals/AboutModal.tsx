@@ -32,7 +32,7 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         </a>{' '}
         衍生出嚟，估香港麻雀糊牌嘅遊戲 -{' '}
         <a
-          href="https://github.com/lowtryan/hk-mahjong-wudle"
+          href="https://github.com/ryan-hkg/hk-mahjong-wudle"
           className="underline font-bold"
         >
           GitHub 原始碼

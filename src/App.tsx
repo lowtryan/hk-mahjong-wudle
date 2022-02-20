@@ -55,7 +55,7 @@ function App() {
 
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(true)
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
@@ -105,6 +105,9 @@ function App() {
   }, [guesses])
 
   useEffect(() => {
+    if (!isGameWon && !isGameLost && guesses.length === 0) {
+      setIsInfoModalOpen(true)
+    }
     if (isGameWon) {
       setSuccessAlert(
         WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
@@ -185,10 +188,10 @@ function App() {
   }
 
   return (
-    <div className="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center mb-5">
+    <div className="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8 overflow-y-auto">
+      <div className="flex w-80 mx-auto items-center mb-6">
         <h1 className="text-2xl grow font-bold dark:text-white">
-          {GAME_TITLE}
+          香港麻雀 糊dle
         </h1>
         <SunIcon
           className="h-6 w-6 cursor-pointer dark:stroke-white"

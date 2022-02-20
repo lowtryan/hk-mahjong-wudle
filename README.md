@@ -2,7 +2,7 @@
 
 This is a clone project of a popular word guessing game made using React, Typescript, and Tailwind.
 
-[https://lowtryan.github.io/hk-mahjong-wudle/](https://lowtryan.github.io/hk-mahjong-wudle/)
+[https://hkwudle.vercel.app/](https://hkwudle.vercel.app/)
 
 ## Build and Run
 

@@ -1,4 +1,4 @@
-export const GAME_TITLE = '香港麻雀 Wu(糊)dle'
+export const GAME_TITLE = 'HK Mahjong Wudle'
 
 export const WIN_MESSAGES = ['恭喜晒！', '你答啱咗啦！', '好叻呀你！']
 export const GAME_COPIED_MESSAGE = '已複製去剪貼簿'
