@@ -151,6 +151,7 @@ function App() {
     if (isGameWon || isGameLost) {
       return
     }
+
     if (!(graphemeSplitter.splitGraphemes(currentGuess).length === HAND_SIZE)) {
       setIsNotEnoughLetters(true)
       return setTimeout(() => {
@@ -182,12 +183,28 @@ function App() {
       setGuesses([...guesses, currentGuess])
       setCurrentGuess('')
 
+      if (guesses.length === 1) {
+        ReactGA.event({
+          category: 'Game',
+          action: 'Started',
+        })
+      }
+
       if (winningWord) {
+        ReactGA.event({
+          category: 'Game',
+          action: 'Won',
+          value: guesses.length,
+        })
         setStats(addStatsForCompletedGame(stats, guesses.length))
         return setIsGameWon(true)
       }
 
       if (guesses.length === GUESS_MAX - 1) {
+        ReactGA.event({
+          category: 'Game',
+          action: 'Lost',
+        })
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
       }
