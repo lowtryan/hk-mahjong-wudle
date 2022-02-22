@@ -145,8 +145,9 @@ export const getWordOfDay = () => {
     isTsumo: hand[26] !== '+',
     solutionIndex: index,
     tomorrow: nextday,
+    index: index,
   }
 }
 
-export const { solution, wind, isTsumo, solutionIndex, tomorrow } =
+export const { solution, wind, isTsumo, solutionIndex, tomorrow, index } =
   getWordOfDay()

@@ -28,6 +28,7 @@ import {
   solution,
   isTsumo,
   wind,
+  index,
 } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -187,6 +188,7 @@ function App() {
         ReactGA.event({
           category: 'Game',
           action: 'Started',
+          label: index.toString(),
         })
       }
 
@@ -194,7 +196,8 @@ function App() {
         ReactGA.event({
           category: 'Game',
           action: 'Won',
-          value: guesses.length,
+          value: guesses.length + 1,
+          label: index.toString(),
         })
         setStats(addStatsForCompletedGame(stats, guesses.length))
         return setIsGameWon(true)
@@ -204,6 +207,7 @@ function App() {
         ReactGA.event({
           category: 'Game',
           action: 'Lost',
+          label: index.toString(),
         })
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
