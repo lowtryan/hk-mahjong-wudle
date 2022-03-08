@@ -1,5 +1,6 @@
 export const HANDS = [
   '5s5s5s2m2m2m7m7m7m9m9m1z1z+1z+12',
+  '5s5s5s2m2m2m7m7m7m9m9m1z1z+1z+12',
   '4s4s4s9s9s9s2m2m5m5m5m5z5z+5z+34',
   '3p4p4p5p5p5p6p6p6p6p7p7p8p9p+22',
   '4s4s4s6s6s6s7s7s5m5m5m4z4z+4z+42',
