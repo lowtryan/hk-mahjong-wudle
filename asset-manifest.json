@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/hk-mahjong-wudle/static/css/main.ff43d7bb.css",
-    "main.js": "/hk-mahjong-wudle/static/js/main.3430249a.js",
-    "static/js/787.4f249097.chunk.js": "/hk-mahjong-wudle/static/js/787.4f249097.chunk.js",
-    "index.html": "/hk-mahjong-wudle/index.html",
-    "main.ff43d7bb.css.map": "/hk-mahjong-wudle/static/css/main.ff43d7bb.css.map",
-    "main.3430249a.js.map": "/hk-mahjong-wudle/static/js/main.3430249a.js.map",
-    "787.4f249097.chunk.js.map": "/hk-mahjong-wudle/static/js/787.4f249097.chunk.js.map"
+    "main.css": "/static/css/main.1a2acac0.css",
+    "main.js": "/static/js/main.b898cf35.js",
+    "static/js/787.4f249097.chunk.js": "/static/js/787.4f249097.chunk.js",
+    "index.html": "/index.html",
+    "main.1a2acac0.css.map": "/static/css/main.1a2acac0.css.map",
+    "main.b898cf35.js.map": "/static/js/main.b898cf35.js.map",
+    "787.4f249097.chunk.js.map": "/static/js/787.4f249097.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff43d7bb.css",
-    "static/js/main.3430249a.js"
+    "static/css/main.1a2acac0.css",
+    "static/js/main.b898cf35.js"
   ]
 }
