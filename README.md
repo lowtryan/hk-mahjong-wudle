@@ -11,7 +11,7 @@ This is a clone project of a popular word guessing game made using React, Typesc
 Clone the repository and perform the following command line actions:
 
 ```bash
-$ cd mahjong-hand-guessing-game
+$ cd hk-mahjong-wudle
 $ npm install
 $ npm run start
 ```

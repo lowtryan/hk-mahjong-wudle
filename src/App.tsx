@@ -3,6 +3,7 @@ import {
   InformationCircleIcon,
   ChartBarIcon,
   SunIcon,
+  AdjustmentsIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import GraphemeSplitter from 'grapheme-splitter'
@@ -19,9 +20,15 @@ import {
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   INVALID_HAND_MESSAGE,
+  HARD_MODE_MESSAGE,
+  EASY_MODE_MESSAGE,
+  STUCK_EASY_MESSAGE,
+  MISS_CORRECT_TILE_MESSAGE,
+  MISS_PRESENT_TILE_MESSAGE,
   CORRECT_WORD_MESSAGE,
 } from './constants/strings'
 import {
+  convertUnicodeToChinese,
   isWordInWordList,
   isInvalidHand,
   isWinningWord,
@@ -35,6 +42,7 @@ import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
 } from './lib/localStorage'
+import { getGuessStatuses } from './lib/statuses'
 import { HAND_SIZE, GUESS_MAX } from './constants/settings'
 
 import './App.css'
@@ -62,7 +70,21 @@ function App() {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isInvalidHandAlertOpen, setIsInvalidHandAlertOpen] = useState(false)
+  const [isStuckEasyAlertOpen, setIsStuckEasyAlertOpen] = useState(false)
+  const [isCorrectTileAlertOpen, setIsCorrectTileAlertOpen] = useState({
+    isOpen: false,
+    word: [0, ''],
+  })
+  const [isPresentTileAlertOpen, setIsPresentTileAlertOpen] = useState({
+    isOpen: false,
+    word: '',
+  })
+  const [isHardModeAlertOpen, setIsHardModeAlertOpen] = useState(false)
+  const [isEasyModeAlertOpen, setIsEasyModeAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
+  const [isHardMode, setIsHardMode] = useState(
+    localStorage.getItem('level') === 'hard' ? true : false
+  )
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
       ? localStorage.getItem('theme') === 'dark'
@@ -106,6 +128,39 @@ function App() {
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }
+
+  useEffect(() => {
+    if (isHardMode) {
+      document.documentElement.classList.add('hard')
+    } else {
+      document.documentElement.classList.remove('hard')
+    }
+  }, [isHardMode])
+
+  const handleHardMode = (isHard: boolean) => {
+    if (guesses.length !== 0 && !isHardMode) {
+      setIsStuckEasyAlertOpen(true)
+      return setTimeout(() => {
+        setIsStuckEasyAlertOpen(false)
+      }, ALERT_TIME_MS)
+    } else {
+      setIsHardMode(isHard)
+      localStorage.setItem('level', isHard ? 'hard' : 'easy')
+      if (isHard) {
+        setIsEasyModeAlertOpen(false)
+        setIsHardModeAlertOpen(true)
+        return setTimeout(() => {
+          setIsHardModeAlertOpen(false)
+        }, ALERT_TIME_MS)
+      } else {
+        setIsHardModeAlertOpen(false)
+        setIsEasyModeAlertOpen(true)
+        return setTimeout(() => {
+          setIsEasyModeAlertOpen(false)
+        }, ALERT_TIME_MS)
+      }
+    }
   }
 
   useEffect(() => {
@@ -174,6 +229,112 @@ function App() {
       }, ALERT_TIME_MS)
     }
 
+    if (isHardMode && guesses.length !== 0) {
+      const previousStatuses = getGuessStatuses(guesses[guesses.length - 1])
+      const currentStatuses = getGuessStatuses(currentGuess)
+      const currentTiles: { [id: string]: string } = {
+        tile0: 'available',
+        tile1: 'available',
+        tile2: 'available',
+        tile3: 'available',
+        tile4: 'available',
+        tile5: 'available',
+        tile6: 'available',
+        tile7: 'available',
+        tile8: 'available',
+        tile9: 'available',
+        tile10: 'available',
+        tile11: 'available',
+        tile12: 'available',
+      }
+      for (let i = 0; i < 14; i++) {
+        if (previousStatuses[i] === 'correct') {
+          if (currentStatuses[i] !== 'correct') {
+            const updatedValue = {
+              isOpen: true,
+              word: [
+                i + 1,
+                convertUnicodeToChinese(
+                  graphemeSplitter.splitGraphemes(guesses[guesses.length - 1])[
+                    i
+                  ]
+                ),
+              ],
+            }
+            setIsCorrectTileAlertOpen({
+              ...isCorrectTileAlertOpen,
+              ...updatedValue,
+            })
+            const originalValue = {
+              isOpen: false,
+              word: [
+                i + 1,
+                convertUnicodeToChinese(
+                  graphemeSplitter.splitGraphemes(guesses[guesses.length - 1])[
+                    i
+                  ]
+                ),
+              ],
+            }
+            return setTimeout(() => {
+              setIsCorrectTileAlertOpen({
+                ...isCorrectTileAlertOpen,
+                ...originalValue,
+              })
+            }, ALERT_TIME_MS)
+          } else if (currentStatuses[i] === 'correct') {
+            const tileNumber = 'tile' + i.toString()
+            currentTiles[tileNumber] = 'used'
+          }
+        }
+      }
+
+      for (let i = 0; i < 14; i++) {
+        if (previousStatuses[i] === 'present') {
+          for (let i2 = 0; i2 < 14; i2++) {
+            const tileNumber = 'tile' + i2.toString()
+            if (
+              graphemeSplitter.splitGraphemes(guesses[guesses.length - 1])[
+                i
+              ] === graphemeSplitter.splitGraphemes(currentGuess)[i2] &&
+              currentTiles[tileNumber] === 'available'
+            ) {
+              currentTiles[tileNumber] = 'used'
+              break
+            }
+            if (i2 === 13) {
+              const updatedValue = {
+                isOpen: true,
+                word: convertUnicodeToChinese(
+                  graphemeSplitter.splitGraphemes(guesses[guesses.length - 1])[
+                    i
+                  ]
+                ),
+              }
+              setIsPresentTileAlertOpen({
+                ...isPresentTileAlertOpen,
+                ...updatedValue,
+              })
+              const originalValue = {
+                isOpen: false,
+                word: convertUnicodeToChinese(
+                  graphemeSplitter.splitGraphemes(guesses[guesses.length - 1])[
+                    i
+                  ]
+                ),
+              }
+              return setTimeout(() => {
+                setIsPresentTileAlertOpen({
+                  ...isPresentTileAlertOpen,
+                  ...originalValue,
+                })
+              }, ALERT_TIME_MS)
+            }
+          }
+        }
+      }
+    }
+
     const winningWord = isWinningWord(currentGuess)
 
     if (
@@ -216,25 +377,34 @@ function App() {
   }
 
   return (
-    <div className="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8 overflow-y-auto">
-      <div className="flex w-80 mx-auto items-center mb-6">
-        <h1 className="text-2xl grow font-bold dark:text-white">
-          香港麻雀 糊dle
-        </h1>
-        <SunIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
-          onClick={() => handleDarkMode(!isDarkMode)}
-        />
+    <div className="pb-4 overflow-y-auto">
+      <div className="flex items-center py-2 px-5">
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
         />
         <ChartBarIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 ml-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
         />
+        <h1 className="text-2xl text-center grow font-bold dark:text-white">
+          香港麻雀 糊dle
+        </h1>
+        <SunIcon
+          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+          onClick={() => handleDarkMode(!isDarkMode)}
+        />
+        <AdjustmentsIcon
+          className={`h-6 w-6 cursor-pointer ${
+            isHardMode
+              ? 'text-red-700 dark:text-red-500'
+              : 'text-green-700 dark:text-green-500'
+          }`}
+          onClick={() => handleHardMode(!isHardMode)}
+        />
       </div>
-      <div className="flex w-full mx-auto items-center mb-3.5">
+      <hr></hr>
+      <div className="flex w-full mx-auto items-center mt-2 mb-3.5">
         <h2 className="text-lg w-full text-center font-bold dark:text-white">
           {windMap[Math.floor(wind / 10)]}圈 {windMap[wind % 10]}位 /{' '}
           {isTsumo ? '自摸' : '出銃'} / 三番起糊
@@ -258,6 +428,7 @@ function App() {
         gameStats={stats}
         isGameLost={isGameLost}
         isGameWon={isGameWon}
+        isHardMode={isHardMode}
         handleShare={() => {
           setSuccessAlert(GAME_COPIED_MESSAGE)
           return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS)
@@ -270,18 +441,37 @@ function App() {
 
       <button
         type="button"
-        className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
+        className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-small rounded dark:text-white bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 dark:hover:bg-slate-700 select-none"
         onClick={() => setIsAboutModalOpen(true)}
       >
         {ABOUT_GAME_MESSAGE}
       </button>
 
+      <Alert message={HARD_MODE_MESSAGE} isOpen={isHardModeAlertOpen} />
+      <Alert
+        message={EASY_MODE_MESSAGE}
+        isOpen={isEasyModeAlertOpen}
+        variant="easy"
+      />
       <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
       <Alert
         message={WORD_NOT_FOUND_MESSAGE}
         isOpen={isWordNotFoundAlertOpen}
       />
       <Alert message={INVALID_HAND_MESSAGE} isOpen={isInvalidHandAlertOpen} />
+      <Alert
+        message={STUCK_EASY_MESSAGE}
+        isOpen={isStuckEasyAlertOpen}
+        variant="easy"
+      />
+      <Alert
+        message={MISS_CORRECT_TILE_MESSAGE(isCorrectTileAlertOpen.word)}
+        isOpen={isCorrectTileAlertOpen.isOpen}
+      />
+      <Alert
+        message={MISS_PRESENT_TILE_MESSAGE(isPresentTileAlertOpen.word)}
+        isOpen={isPresentTileAlertOpen.isOpen}
+      />
       <Alert message={CORRECT_WORD_MESSAGE(solution)} isOpen={isGameLost} />
       <Alert
         message={successAlert}

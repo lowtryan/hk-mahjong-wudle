@@ -6,9 +6,13 @@ import { GUESS_MAX } from '../constants/settings'
 
 const graphemeSplitter = new GraphemeSplitter()
 
-export const shareStatus = (guesses: string[], lost: boolean) => {
+export const shareStatus = (
+  guesses: string[],
+  lost: boolean,
+  hard: boolean
+) => {
   navigator.clipboard.writeText(
-    `${GAME_TITLE} ${solutionIndex} ${
+    `${GAME_TITLE} ${hard ? '(Hard)' : ''} ${solutionIndex} ${
       lost ? 'X' : guesses.length
     }/${GUESS_MAX}\n\n` + generateEmojiGrid(guesses)
   )
