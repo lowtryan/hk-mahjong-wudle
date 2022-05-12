@@ -23,6 +23,7 @@ import {
   HARD_MODE_MESSAGE,
   EASY_MODE_MESSAGE,
   STUCK_EASY_MESSAGE,
+  BROKEN_MESSAGE,
   MISS_CORRECT_TILE_MESSAGE,
   MISS_PRESENT_TILE_MESSAGE,
   CORRECT_WORD_MESSAGE,
@@ -71,6 +72,7 @@ function App() {
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isInvalidHandAlertOpen, setIsInvalidHandAlertOpen] = useState(false)
   const [isStuckEasyAlertOpen, setIsStuckEasyAlertOpen] = useState(false)
+  const [isBrokenAlertOpen, setIsBrokenAlertOpen] = useState(false)
   const [isCorrectTileAlertOpen, setIsCorrectTileAlertOpen] = useState({
     isOpen: false,
     word: [0, ''],
@@ -139,7 +141,12 @@ function App() {
   }, [isHardMode])
 
   const handleHardMode = (isHard: boolean) => {
-    if (guesses.length !== 0 && !isHardMode) {
+    if (isGameWon || isGameLost) {
+      setIsBrokenAlertOpen(true)
+      return setTimeout(() => {
+        setIsBrokenAlertOpen(false)
+      }, ALERT_TIME_MS)
+    } else if (guesses.length !== 0 && !isHardMode) {
       setIsStuckEasyAlertOpen(true)
       return setTimeout(() => {
         setIsStuckEasyAlertOpen(false)
@@ -464,6 +471,7 @@ function App() {
         isOpen={isStuckEasyAlertOpen}
         variant="easy"
       />
+      <Alert message={BROKEN_MESSAGE} isOpen={isBrokenAlertOpen} />
       <Alert
         message={MISS_CORRECT_TILE_MESSAGE(isCorrectTileAlertOpen.word)}
         isOpen={isCorrectTileAlertOpen.isOpen}
