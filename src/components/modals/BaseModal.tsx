@@ -17,7 +17,7 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
         className="fixed z-10 inset-0 overflow-y-auto"
         onClose={handleClose}
       >
-        <div className="flex items-center justify-center min-h-screen py-10 px-4 text-center sm:block sm:p-0">
+        <div className="flex items-center justify-center py-10 px-4 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -32,7 +32,7 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
 
           {/* This element is to trick the browser into centering the modal contents. */}
           <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            className="hidden sm:inline-block sm:align-middle"
             aria-hidden="true"
           >
             &#8203;
