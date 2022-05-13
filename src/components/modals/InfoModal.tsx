@@ -13,9 +13,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       <p className="text-sm text-gray-500 dark:text-gray-300">
         用6次機會，估中一副香港麻雀3番或以上嘅牌
         <br />
-        喺每次交完答案之後，啲方格會根據你嘅答案轉顏色，
-        <br />
-        作為你之後嘅提示
+        喺每次交完答案之後，啲方格會根據你嘅答案轉顏色，作為你之後嘅提示
       </p>
 
       <p className="text-sm text-green-700 dark:text-green-500">

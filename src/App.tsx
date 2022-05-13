@@ -413,8 +413,8 @@ function App() {
       <hr></hr>
       <div className="flex w-full mx-auto items-center mt-2 mb-3.5">
         <h2 className="text-lg w-full text-center font-bold dark:text-white">
-          {windMap[Math.floor(wind / 10)]}圈 {windMap[wind % 10]}位 /{' '}
-          {isTsumo ? '自摸' : '出銃'} / 三番起糊
+          {windMap[Math.floor(wind / 10)]}圈 {windMap[wind % 10]}位 |{' '}
+          {isTsumo ? '自摸' : '出銃'} | 三番起糊
         </h2>
       </div>
       <Grid guesses={guesses} currentGuess={currentGuess} />
