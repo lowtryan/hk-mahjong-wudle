@@ -253,6 +253,7 @@ function App() {
         tile10: 'available',
         tile11: 'available',
         tile12: 'available',
+        tile13: 'available',
       }
       for (let i = 0; i < 14; i++) {
         if (previousStatuses[i] === 'correct') {
