@@ -14,6 +14,7 @@ import { AboutModal } from './components/modals/AboutModal'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
 import {
+  GAME_TITLE,
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
   ABOUT_GAME_MESSAGE,
@@ -396,7 +397,7 @@ function App() {
           onClick={() => setIsStatsModalOpen(true)}
         />
         <h1 className="text-2xl text-center grow font-bold dark:text-white">
-          香港麻雀 糊dle
+          {GAME_TITLE}
         </h1>
         <SunIcon
           className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
